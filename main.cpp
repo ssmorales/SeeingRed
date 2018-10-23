@@ -24,25 +24,25 @@ int main(int argc, char* argv[])
   if ( validBmp == true )
   {
     cout << "true" << endl;
-  }
-  else
-  {
-    cout << "false" << endl;
-  }
-  imagePixels = image.toPixelMatrix();
-  for ( int row = 0; row < imagePixels.size(); row++)
-  {
-    numrows = numrows + 1;
   
-  for ( int collumn = 0; collumn < imagePixels[row].size(); collumn++)
+  
+  imagePixels = image.toPixelMatrix();
+    for ( int row = 0; row < imagePixels.size(); row++)
     {
+      numrows = numrows + 1;
+  
+    for ( int collumn = 0; collumn < imagePixels[row].size(); collumn++)
+      {
       
-      
-      color.green = 0;
-      color.blue = 0;
-
+        color = imagePixels[row][collumn];   
+        color.green = 0;
+        color.blue = 0;
+        imagePixels[row][collumn] = color;
+        //image.fromPixelMatrix( imagePixels );
+       // image.save("redness.bmp");
+      }
+     }
     }
-   }
    image.fromPixelMatrix( imagePixels );
    image.save("redness.bmp");
   cout << imagePixels.size() << endl;
