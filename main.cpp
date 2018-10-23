@@ -9,21 +9,19 @@ using namespace std;
 int main(int argc, char* argv[])
 {
   Bitmap image;
-  image.open("kendall.bmp");
-  cout << argc << endl;
-  cout << argv[0] << endl;
+  image.open(argv[1]);
   vector<vector<Pixel> > imagePixels;
   int numrows = 0;
   int numcollumns = 0;
   Pixel color;
-  if ( argc <= 1 )
+  if ( argc <= 1 || argc >= 3 )
   {
     cout << "Please spcify one image file!" << endl;
   }
   bool validBmp = image.isImage();
   if ( validBmp == true )
   {
-    cout << "true" << endl;
+    
   
   
   imagePixels = image.toPixelMatrix();
@@ -43,9 +41,13 @@ int main(int argc, char* argv[])
       }
      }
     }
+    else
+    {
+      cout << "Image file must be a bitmap with 24-bit color depth." << endl;
+    }
    image.fromPixelMatrix( imagePixels );
    image.save("redness.bmp");
-  cout << imagePixels.size() << endl;
-  cout << imagePixels[0].size() << endl;
+  cout << argv[1] << " is " <<  imagePixels.size() << " pixels high and " << imagePixels[0].size() << " Pixels wide." << endl;
+
   return 0;
 }
